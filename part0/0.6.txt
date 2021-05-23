@@ -1,0 +1,15 @@
+title Spa
+
+note over Browser: 
+    User clicks the save button to
+    add a new item to the database
+end note
+Browser->Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note over Server: 
+    Server receives request to
+    add new item to the database
+end note
+note over Browser: 
+    Updates the page with new list item
+end note
+Server-->Browser: 201: {"message":"note created"}

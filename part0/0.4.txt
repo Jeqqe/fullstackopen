@@ -1,0 +1,28 @@
+title New Note
+
+Browser->Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server: 
+    Server receives request to
+    add new note to the database
+end note
+Server-->Browser: URL redirect
+note over Browser: 
+    Server tells browser to
+    request the updated notes
+end note
+Browser->Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML code
+Browser->Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+note over Browser: 
+    Browser starts running the js code to
+    request the notes data from the server
+end note
+Browser->Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: json data: [{"content":"q onda compa","date":"2021-05-23T06:03:58.518Z"},...]
+note over Browser: 
+    Render the content of requested data
+    on the website
+end note
