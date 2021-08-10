@@ -7,7 +7,7 @@ This course serves as an introduction to modern web application development with
 - [x] [Part 0](./part0) - Fundamentals of Web apps (6/6)
 - [x] [Part 1](./part1) - Introduction to React (14/14)
 - [x] [Part 2](./part2) - Communicating with server (20/20)
-- [ ] Part 3 - Programming a server with NodeJS and Express (0/22)
+- [x] [Part 3](./part3) - Programming a server with NodeJS and Express (0/22)
 - [ ] Part 4 - Testing Express servers, user administration (0/23)
 - [ ] Part 5 - Testing React apps (0/22)
 - [ ] Part 6 - State management with Redux (0/21)
