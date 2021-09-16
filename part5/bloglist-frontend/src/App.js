@@ -11,7 +11,6 @@ const App = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
-
     const [notification, setNotification] = useState(null)
 
     useEffect(() => {
@@ -89,8 +88,22 @@ const App = () => {
                         {user.name} logged-in
                         <button onClick={handleLogout}>logout</button>
                     </p>
-                    <BlogForm blogService={blogService} />
-                    <BlogList blogs={blogs} />
+                    <BlogForm
+                        blogService={blogService}
+                        successNotification={successNotification}
+                        errorNotification={errorNotification}
+                        setBlogs={setBlogs}
+                    />
+                    <BlogList
+                        blogs={blogs.sort((a, b) =>
+                            a.likes > b.likes ? -1 : 1
+                        )}
+                        setBlogs={setBlogs}
+                        successNotification={successNotification}
+                        errorNotification={errorNotification}
+                        blogService={blogService}
+                        user={user}
+                    />
                 </>
             )}
         </>

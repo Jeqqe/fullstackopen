@@ -1,16 +1,6 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
 const userExtractor = require('../utils/middleware').userExtractor
-
-const getTokenFrom = (request) => {
-    const auth = request.get('authorization')
-    if (auth && auth.toLowerCase().startsWith('bearer ')) {
-        return auth.substring(7)
-    }
-    return null
-}
 
 blogsRouter.get('/', async (request, response) => {
     const blogs = await Blog.find({}).populate('user', {
@@ -56,6 +46,7 @@ blogsRouter.delete('/:id', userExtractor, async (request, response) => {
 blogsRouter.put('/:id', userExtractor, async (request, response) => {
     const user = request.user
     const blog = await Blog.findById(request.params.id)
+    const body = request.body
 
     if (blog.user.toString() !== user.id.toString()) {
         return response.status(401).json({
@@ -63,21 +54,20 @@ blogsRouter.put('/:id', userExtractor, async (request, response) => {
         })
     }
 
-    const body = request.body
-    const newBlog = {
-        likes: body.likes,
-    }
-
-    const updatedBlog = await Blog.findByIdAndUpdate(
-        request.params.id,
-        newBlog,
-        {
-            new: true,
-            runValidators: true,
-            context: 'query',
-        }
-    )
+    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, body, {
+        new: true,
+        runValidators: true,
+        context: 'query',
+    })
     response.json(updatedBlog)
+})
+
+blogsRouter.put('/:id/likes', async (request, response) => {
+    const blog = await Blog.findById(request.params.id)
+    blog.likes += 1
+
+    const savedBlog = await blog.save()
+    response.json(savedBlog)
 })
 
 module.exports = blogsRouter
