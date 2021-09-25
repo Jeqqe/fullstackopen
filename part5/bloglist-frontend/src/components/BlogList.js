@@ -1,29 +1,23 @@
 import React from 'react'
 import Blog from './Blog'
 
-const BlogList = ({
-    blogs,
-    setBlogs,
-    successNotification,
-    errorNotification,
-    blogService,
-    user,
-}) => (
-    <div>
-        <h2>blogs</h2>
-        {blogs.map((blog) => (
-            <Blog
-                key={blog.id}
-                blog={blog}
-                blogs={blogs}
-                setBlogs={setBlogs}
-                successNotification={successNotification}
-                errorNotification={errorNotification}
-                blogService={blogService}
-                user={user}
-            />
-        ))}
-    </div>
-)
+const BlogList = ({ blogs, user, handleRemoveBlog, handleAddLikeToBlog }) => {
+    return (
+        <div>
+            <h2>blogs</h2>
+            {blogs
+                .sort((a, b) => (a.likes > b.likes ? -1 : 1))
+                .map((blog) => (
+                    <Blog
+                        key={blog.id}
+                        blog={blog}
+                        user={user}
+                        handleRemoveBlog={handleRemoveBlog}
+                        handleAddLikeToBlog={handleAddLikeToBlog}
+                    />
+                ))}
+        </div>
+    )
+}
 
 export default BlogList

@@ -1,23 +1,21 @@
 import React from 'react'
+
 const Notification = ({ notification }) => {
+    const getNotificationStyle = () => {
+        switch (notification.type.toLowerCase()) {
+            case 'success':
+                return 'notificationSuccess'
+            case 'error':
+                return 'notificationError'
+            default:
+                return null
+        }
+    }
+
     if (notification === null) {
         return null
     }
-
-    switch (notification.type.toLowerCase()) {
-        case 'success':
-            return (
-                <div className='notificationSuccess'>
-                    {notification.message}
-                </div>
-            )
-        case 'error':
-            return (
-                <div className='notificationError'>{notification.message}</div>
-            )
-        default:
-            return null
-    }
+    return <div className={getNotificationStyle()}>{notification.message}</div>
 }
 
 export default Notification

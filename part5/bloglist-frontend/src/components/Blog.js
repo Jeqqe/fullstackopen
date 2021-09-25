@@ -1,31 +1,7 @@
 import React from 'react'
 import Toggleable from './Toggleable'
 
-const RemoveBtn = ({ blogService, blog, setBlogs }) => (
-    <button
-        onClick={async () => {
-            if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
-                await blogService.remove(blog)
-                const blogs = await blogService.getAll()
-                setBlogs(blogs)
-            }
-        }}>
-        remove
-    </button>
-)
-
-const LikeBtn = ({ blogService, blog, setBlogs }) => (
-    <button
-        onClick={async () => {
-            await blogService.addLike(blog)
-            const blogs = await blogService.getAll()
-            setBlogs(blogs)
-        }}>
-        like
-    </button>
-)
-
-const Blog = ({ blogService, blog, setBlogs, user }) => {
+const Blog = ({ blog, user, handleRemoveBlog, handleAddLikeToBlog }) => {
     const blogStyle = {
         paddingTop: 10,
         paddingLeft: 2,
@@ -42,22 +18,18 @@ const Blog = ({ blogService, blog, setBlogs, user }) => {
                     <p>URL: {blog.url}</p>
                     <p>
                         Likes: {blog.likes}{' '}
-                        <LikeBtn
-                            blogService={blogService}
-                            blog={blog}
-                            setBlogs={setBlogs}
-                        />
+                        <button onClick={() => handleAddLikeToBlog(blog)}>
+                            like
+                        </button>
                     </p>
                     <p>Author: {blog.author}</p>
                     <p>{blog.user.username}</p>
+                    {user.id === blog.user.id && (
+                        <button onClick={() => handleRemoveBlog(blog)}>
+                            remove
+                        </button>
+                    )}
                 </div>
-                {user.id === blog.user.id && (
-                    <RemoveBtn
-                        blogService={blogService}
-                        blog={blog}
-                        setBlogs={setBlogs}
-                    />
-                )}
             </Toggleable>
         </>
     )

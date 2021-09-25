@@ -7,12 +7,16 @@ const setToken = (newToken) => {
     token = `bearer ${newToken}`
 }
 
-const getAll = () => {
-    const request = axios.get(baseUrl)
-    return request.then((response) => response.data)
+const getAllBlogs = () => {
+    try {
+        const response = axios.get(baseUrl)
+        return response.then((response) => response.data)
+    } catch (err) {
+        return err.response
+    }
 }
 
-const create = async (newObject) => {
+const createNewBlog = async (newObject) => {
     const config = {
         headers: { Authorization: token },
     }
@@ -25,27 +29,50 @@ const create = async (newObject) => {
     }
 }
 
-const update = async (blogID, newObject) => {
+const updateBlog = async (blogID, newObject) => {
     const config = {
         headers: { Authorization: token },
     }
 
-    const response = await axios.put(`${baseUrl}/${blogID}`, newObject, config)
-    return response.data
+    try {
+        const response = await axios.put(
+            `${baseUrl}/${blogID}`,
+            newObject,
+            config
+        )
+        return response
+    } catch (err) {
+        return err.response
+    }
 }
 
-const remove = async (blog) => {
+const removeBlog = async (blog) => {
     const config = {
         headers: { Authorization: token },
     }
 
-    const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
-    return response.data
+    try {
+        const response = await axios.delete(`${baseUrl}/${blog.id}`, config)
+        return response
+    } catch (err) {
+        return err.response
+    }
 }
 
-const addLike = async (blog) => {
-    const response = await axios.put(`${baseUrl}/${blog.id}/likes`)
-    return response.data
+const addLikeToBlog = async (blog) => {
+    try {
+        const response = await axios.put(`${baseUrl}/${blog.id}/likes`)
+        return response
+    } catch (err) {
+        return err.response
+    }
 }
 
-export default { getAll, create, update, remove, addLike, setToken }
+export {
+    getAllBlogs,
+    createNewBlog,
+    updateBlog,
+    removeBlog,
+    addLikeToBlog,
+    setToken,
+}

@@ -1,45 +1,34 @@
 import React, { useState, useRef } from 'react'
 import Toggleable from './Toggleable'
 
-const BlogForm = ({
-    blogService,
-    setBlogs,
-    successNotification,
-    errorNotification,
-}) => {
+const BlogForm = ({ handleCreateNewBlog }) => {
     const [newTitle, setNewTitle] = useState('')
     const [newAuthor, setNewAuthor] = useState('')
     const [newUrl, setNewUrl] = useState('')
 
     const blogFormRef = useRef()
 
-    const addBlog = async (event) => {
-        event.preventDefault()
-
-        const response = await blogService.create({
-            title: newTitle,
-            author: newAuthor,
-            url: newUrl,
-        })
-
-        if (response.status === 201) {
-            blogService.getAll().then((blogs) => setBlogs(blogs))
-
-            blogFormRef.current.toggleVisibility()
-            successNotification(`a new blog ${newTitle} by ${newAuthor} added`)
-        } else {
-            errorNotification(response.data.error)
-        }
-    }
-
     return (
         <>
             <Toggleable buttonLabel='create new blog' ref={blogFormRef}>
                 <h2>create new</h2>
-                <form onSubmit={addBlog}>
+                <form
+                    onSubmit={async (event) => {
+                        await handleCreateNewBlog(
+                            event,
+                            newTitle,
+                            newAuthor,
+                            newUrl,
+                            setNewTitle,
+                            setNewAuthor,
+                            setNewUrl,
+                            blogFormRef.current
+                        )
+                    }}>
                     <p>
                         title:
                         <input
+                            id='blogTitle'
                             value={newTitle}
                             type='text'
                             name='Title'
@@ -49,6 +38,7 @@ const BlogForm = ({
                     <p>
                         author:
                         <input
+                            id='blogAuthor'
                             value={newAuthor}
                             type='text'
                             name='Author'
@@ -60,6 +50,7 @@ const BlogForm = ({
                     <p>
                         url
                         <input
+                            id='blogUrl'
                             value={newUrl}
                             type='text'
                             name='Url'
