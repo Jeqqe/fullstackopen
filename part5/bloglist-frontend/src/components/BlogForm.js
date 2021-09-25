@@ -13,6 +13,7 @@ const BlogForm = ({ handleCreateNewBlog }) => {
             <Toggleable buttonLabel='create new blog' ref={blogFormRef}>
                 <h2>create new</h2>
                 <form
+                    className='blogForm'
                     onSubmit={async (event) => {
                         await handleCreateNewBlog(
                             event,
@@ -57,7 +58,9 @@ const BlogForm = ({ handleCreateNewBlog }) => {
                             onChange={({ target }) => setNewUrl(target.value)}
                         />
                     </p>
-                    <button type='submit'>create</button>
+                    <button id='createBlogBtn' type='submit'>
+                        create
+                    </button>
                 </form>
             </Toggleable>
         </>

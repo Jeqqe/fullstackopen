@@ -11,27 +11,33 @@ const Blog = ({ blog, user, handleRemoveBlog, handleAddLikeToBlog }) => {
     }
 
     return (
-        <>
-            {blog.title} by {blog.author}
+        <div className='blog'>
+            <span>
+                {blog.title} by {blog.author}
+            </span>
             <Toggleable buttonLabel='view'>
                 <div style={blogStyle}>
                     <p>URL: {blog.url}</p>
                     <p>
-                        Likes: {blog.likes}{' '}
-                        <button onClick={() => handleAddLikeToBlog(blog)}>
+                        Likes: <span id='likeAmount'>{blog.likes}</span>
+                        <button
+                            id='likeBtn'
+                            onClick={() => handleAddLikeToBlog(blog)}>
                             like
                         </button>
                     </p>
                     <p>Author: {blog.author}</p>
                     <p>{blog.user.username}</p>
                     {user.id === blog.user.id && (
-                        <button onClick={() => handleRemoveBlog(blog)}>
+                        <button
+                            id='removeBtn'
+                            onClick={() => handleRemoveBlog(blog)}>
                             remove
                         </button>
                     )}
                 </div>
             </Toggleable>
-        </>
+        </div>
     )
 }
 
