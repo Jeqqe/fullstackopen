@@ -12,9 +12,10 @@ This course serves as an introduction to modern web application development with
 -   [x] [Part 3](./part3) - Programming a server with NodeJS and Express (22/22)
 -   [x] [Part 4](./part4) - Testing Express servers, user administration (23/23)
 -   [x] [Part 5](./part5) - Testing React apps (22/22)
--   [ ] Part 6 - State management with Redux (0/21) [ETA 13.10]
--   [ ] Part 7 - React router, custom hooks, styling app with CSS and webpack (0/21) [ETA 31.10]
--   [ ] Part 8 - GraphQL (0/26) [ETA 21.11]
--   [ ] Part 9 - TypeScript (0/27) [ETA 22.12]
--   [ ] Part 10 - React Native (0/27) [ETA 12.1]
--   [ ] Part 11 - CI/CD (0/22) [ETA 27.1]
+-   [x] [Part 6](./part6) - State management with Redux (21/21)
+-   [ ] Part 7 - React router, custom hooks, styling app with CSS and webpack (0/21) [ETA 10.11]
+-   [ ] Part 8 - GraphQL (0/26) [ETA 1.12]
+-   [ ] Part 9 - TypeScript (0/27) [ETA 2.1]
+-   [ ] Part 10 - React Native (0/27) [ETA 22.1]
+-   [ ] Part 11 - CI/CD (0/22) [ETA 7.2]
+-   [ ] Part 12 - Containers (0/22) [ETA 28.2]
