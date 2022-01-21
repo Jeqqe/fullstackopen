@@ -1,35 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-const useField = (type) => {
-  const [value, setValue] = useState('');
-
-  const onChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  return {
-    type,
-    value,
-    onChange,
-  };
-};
-
-const useResource = (baseUrl) => {
-  const [resources, setResources] = useState([]);
-
-  // ...
-
-  const create = (resource) => {
-    // ...
-  };
-
-  const service = {
-    create,
-  };
-
-  return [resources, service];
-};
+import { useField } from './hooks/field';
+import { useResource } from './hooks/resource';
 
 const App = () => {
   const content = useField('text');
