@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAnecdoteField } from '../hooks/anecdoteField';
 
 const CreateNew = (props) => {
-  const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
-  const [info, setInfo] = useState('');
+  const content = useAnecdoteField('content');
+  const author = useAnecdoteField('author');
+  const info = useAnecdoteField('info');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     props.addNew({
-      content,
-      author,
-      info,
+      content: content.data.value,
+      author: author.data.value,
+      info: info.data.value,
       votes: 0,
     });
   };
@@ -21,30 +23,26 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input
-            name='content'
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          <input {...content.data} />
         </div>
         <div>
           author
-          <input
-            name='author'
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
+          <input {...author.data} />
         </div>
         <div>
           url for more info
-          <input
-            name='info'
-            value={info}
-            onChange={(e) => setInfo(e.target.value)}
-          />
+          <input {...info.data} />
         </div>
         <button>create</button>
       </form>
+      <button
+        onClick={() => {
+          content.resetValue();
+          author.resetValue();
+          info.resetValue();
+        }}>
+        reset
+      </button>
     </div>
   );
 };
