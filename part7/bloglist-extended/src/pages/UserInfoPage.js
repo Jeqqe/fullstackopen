@@ -1,17 +1,23 @@
 import React from 'react'
 
+import { Container, ListGroup } from 'react-bootstrap'
+
 const UserInfoPage = ({ user }) => {
   if (!user) return ''
 
   return (
     <div>
       <h1>{user.username}</h1>
-      <h2>Added blogs</h2>
-      <ul>
-        {user.blogs.map((blog) => (
-          <li key={blog.id}>{blog.title}</li>
-        ))}
-      </ul>
+      <Container style={{ padding: '10px' }}>
+        <h2>Added blogs</h2>
+        <ListGroup>
+          {user.blogs.map((blog) => (
+            <ListGroup.Item key={blog.id}>
+              {blog.title} by {blog.author}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Container>
     </div>
   )
 }

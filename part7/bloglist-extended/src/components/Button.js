@@ -1,7 +1,13 @@
 import React from 'react'
 
-const Button = ({ name, clickHandler }) => {
-  return <button onClick={clickHandler}>{name}</button>
+import { Button } from 'react-bootstrap'
+
+const CustomButton = ({ name, variant, clickHandler }) => {
+  return (
+    <Button variant={variant} onClick={clickHandler}>
+      {name}
+    </Button>
+  )
 }
 
-export default Button
+export default CustomButton

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
 
+import { Navbar, Container, Nav } from 'react-bootstrap'
+
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 import Button from './components/Button'
@@ -59,25 +61,40 @@ const App = () => {
     : null
 
   return (
-    <div>
+    <Container>
       <Notification />
       {user === null ? (
         <LoginForm />
       ) : (
         <div>
-          <div>
-            <Link to='/'>home</Link>
-            <Link to='/users'>users</Link>
-          </div>
-          <p>
-            {user.name} logged-in
-            <Button
-              name='logout'
-              clickHandler={(event) => handleLogout(event)}
-            />
-          </p>
+          <Navbar bg='light' expand='lg'>
+            <Container>
+              <Navbar.Brand>Bloglist-App</Navbar.Brand>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='me-auto'>
+                  <Nav.Link>
+                    <Link to='/'>home</Link>
+                  </Nav.Link>
+                  <Nav.Link>
+                    <Link to='/users'>users</Link>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+              <Navbar.Collapse className='justify-content-end'>
+                <Navbar.Text>
+                  <Container>Logged in as {user.name}</Container>
+                </Navbar.Text>
+                <Button
+                  name='logout'
+                  clickHandler={(event) => handleLogout(event)}
+                />
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          <div></div>
 
-          <div>
+          <Container>
             <Switch>
               <Route path='/users/:id'>
                 <UserInfoPage user={matchedUser} />
@@ -92,10 +109,10 @@ const App = () => {
                 <HomePage blogs={blogs} />
               </Route>
             </Switch>
-          </div>
+          </Container>
         </div>
       )}
-    </div>
+    </Container>
   )
 }
 

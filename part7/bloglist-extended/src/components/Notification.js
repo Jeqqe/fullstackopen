@@ -1,17 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { Alert } from 'react-bootstrap'
+
 const Notification = (props) => {
-  const style = {
-    border: 'solid',
-    padding: 10,
-    borderWidth: 1,
-  }
-  return props.notification === '' ? (
-    ''
-  ) : (
-    <div style={style}>{props.notification}</div>
-  )
+  return props.notification === '' ? '' : <Alert>{props.notification}</Alert>
 }
 
 const mapStateToProps = (state) => {

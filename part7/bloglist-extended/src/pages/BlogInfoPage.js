@@ -8,6 +8,8 @@ import BlogCommentList from '../components/BlogCommentList'
 import { addLikeToBlog, removeBlog } from '../state/reducers/blog/reducer'
 import { setNotification } from '../state/reducers/notificationReducer'
 
+import { Card } from 'react-bootstrap'
+
 const BlogInfoPage = ({ blog, user }) => {
   if (!blog) return ''
 
@@ -26,16 +28,29 @@ const BlogInfoPage = ({ blog, user }) => {
 
   return (
     <div>
-      <h1>
-        {blog.title} by {blog.author}
-      </h1>
-      <p>URL: {blog.url}</p>
-      <p>Likes: {blog.likes}</p>
-      <Button name='like' clickHandler={() => likeButtonClick(blog)} />
-      <p>Added by {blog.user.username}</p>
-      {user.id === blog.user.id && (
-        <Button name='remove' clickHandler={() => removeButtonClick(blog)} />
-      )}
+      <Card>
+        <Card.Body>
+          <Card.Title>
+            {blog.title} by {blog.author}
+          </Card.Title>
+          <Card.Subtitle className='mb-2 text-muted'>
+            <p>Added by {blog.user.username}</p>
+          </Card.Subtitle>
+          <Card.Text>URL: {blog.url}</Card.Text>
+          <Card.Text>Likes: {blog.likes}</Card.Text>
+          <Button
+            variant={'success'}
+            name='like'
+            clickHandler={() => likeButtonClick(blog)}
+          />
+          {user.id === blog.user.id && (
+            <Button
+              name='remove'
+              clickHandler={() => removeButtonClick(blog)}
+            />
+          )}
+        </Card.Body>
+      </Card>
       <h1>Comments</h1>
       <BlogCommentForm blog={blog} />
       <BlogCommentList blog={blog} />
