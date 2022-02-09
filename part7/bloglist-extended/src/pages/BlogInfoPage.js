@@ -2,8 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import Button from '../components/Button'
+import BlogCommentForm from '../components/BlogCommentForm'
+import BlogCommentList from '../components/BlogCommentList'
 
 import { addLikeToBlog, removeBlog } from '../state/reducers/blog/reducer'
+import { setNotification } from '../state/reducers/notificationReducer'
 
 const BlogInfoPage = ({ blog, user }) => {
   if (!blog) return ''
@@ -17,6 +20,7 @@ const BlogInfoPage = ({ blog, user }) => {
   const removeButtonClick = (blog) => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
       dispatch(removeBlog(blog))
+      dispatch(setNotification('Blog removed.', 5))
     }
   }
 
@@ -32,6 +36,9 @@ const BlogInfoPage = ({ blog, user }) => {
       {user.id === blog.user.id && (
         <Button name='remove' clickHandler={() => removeButtonClick(blog)} />
       )}
+      <h1>Comments</h1>
+      <BlogCommentForm blog={blog} />
+      <BlogCommentList blog={blog} />
     </div>
   )
 }

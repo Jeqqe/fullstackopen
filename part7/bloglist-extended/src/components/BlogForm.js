@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import Toggleable from './Toggleable'
 
 import { addNewBlog } from '../state/reducers/blog/reducer'
+import { setNotification } from '../state/reducers/notificationReducer'
 
 const BlogForm = () => {
   const [title, setTitle] = useState('')
@@ -26,6 +27,8 @@ const BlogForm = () => {
     setTitle('')
     setAuthor('')
     setUrl('')
+
+    dispatch(setNotification('Blog created.', 5))
   }
 
   return (

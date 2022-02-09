@@ -5,6 +5,7 @@ import { loginUser } from '../services/loginService'
 import { setToken } from '../services/blogService'
 
 import { setUser } from '../state/reducers/user/reducer'
+import { setNotification } from '../state/reducers/notificationReducer'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
@@ -28,9 +29,10 @@ const LoginForm = () => {
 
       setUsername('')
       setPassword('')
-      // successNotification('Successfully logged in')
+
+      dispatch(setNotification('Successfully logged in.', 5))
     } catch (exception) {
-      // errorNotification('Wrong credentials')
+      dispatch(setNotification('Incorrect login credentials', 5))
     }
   }
 

@@ -64,4 +64,15 @@ export const addBlogLikeToDatabase = async (blog) => {
   }
 }
 
+export const addBlogCommentToDatabase = async (blog, comment) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${blog.id}/comments`, {
+      newComment: comment,
+    })
+    return response
+  } catch (err) {
+    return err.response
+  }
+}
+
 export { updateBlog, setToken }

@@ -1,5 +1,6 @@
 import {
   addBlogLikeToDatabase,
+  addBlogCommentToDatabase,
   addNewBlogToDatabase,
   getAllBlogsFromDatabase,
   removeBlogFromDatabase,
@@ -20,6 +21,13 @@ const reducer = (state = [], action) => {
       return state.map((blog) => {
         if (blog.id === action.data.id) {
           return { ...blog, likes: blog.likes + 1 }
+        }
+        return blog
+      })
+    case actions.ADD_BLOG_COMMENT:
+      return state.map((blog) => {
+        if (blog.id === action.data.blog.id) {
+          return { ...blog, comments: [...blog.comments, action.data.comment] }
         }
         return blog
       })
@@ -46,6 +54,11 @@ export const removeBlog = (blog) => async (dispatch) => {
 export const addLikeToBlog = (blog) => async (dispatch) => {
   const updatedBlog = await addBlogLikeToDatabase(blog)
   dispatch(actions.addLikeToBlog(updatedBlog.data))
+}
+
+export const addCommentToBlog = (blog, comment) => async (dispatch) => {
+  await addBlogCommentToDatabase(blog, comment)
+  dispatch(actions.addCommentToBlog(blog, comment))
 }
 
 export default reducer

@@ -17,6 +17,7 @@ import { setToken } from './services/blogService'
 import { loadBlogs } from './state/reducers/blog/reducer'
 import { loadUsers } from './state/reducers/users/reducer'
 import { removeUser, setUser } from './state/reducers/user/reducer'
+import { setNotification } from './state/reducers/notificationReducer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ const App = () => {
 
     window.localStorage.removeItem('loggedUser')
     dispatch(removeUser())
+    dispatch(setNotification('Successfully logged out.', 5))
   }
 
   // Searched user ID
@@ -58,6 +60,7 @@ const App = () => {
 
   return (
     <div>
+      <Notification />
       {user === null ? (
         <LoginForm />
       ) : (
@@ -66,8 +69,6 @@ const App = () => {
             <Link to='/'>home</Link>
             <Link to='/users'>users</Link>
           </div>
-
-          <Notification />
           <p>
             {user.name} logged-in
             <Button
