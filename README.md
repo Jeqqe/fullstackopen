@@ -14,7 +14,7 @@ This course serves as an introduction to modern web application development with
 - [x] [Part 5](./part5) - Testing React apps (22/22)
 - [x] [Part 6](./part6) - State management with Redux (21/21)
 - [x] [Part 7](./part7) - React router, custom hooks, styling app with CSS and webpack (21/21)
-- [ ] Part 8 - GraphQL (0/26)
+- [ ] [Part 8](./part8) - GraphQL (8/26)
 - [ ] Part 9 - TypeScript (0/27)
 - [ ] Part 10 - React Native (0/27)
 - [ ] Part 11 - CI/CD (0/22)
