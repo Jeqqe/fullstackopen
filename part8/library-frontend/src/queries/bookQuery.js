@@ -1,12 +1,22 @@
 import { gql } from '@apollo/client'
 
-export const ALL_BOOKS_WITHOUT_GENRES = gql`
-  query {
-    allBooks {
+export const ALL_BOOKS = gql`
+  query AllBooks($genres: [String!], $author: String) {
+    allBooks(genres: $genres, author: $author) {
       title
-      author
+      author {
+        name
+      }
       published
+      genres
+      id
     }
+  }
+`
+
+export const ALL_GENRES = gql`
+  query {
+    allGenres
   }
 `
 
@@ -24,7 +34,12 @@ export const CREATE_BOOK = gql`
       genres: $genres
     ) {
       title
-      author
+      author {
+        id
+        name
+        born
+        bookCount
+      }
       published
       genres
     }

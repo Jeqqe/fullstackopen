@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 
-import { CREATE_BOOK, ALL_BOOKS_WITHOUT_GENRES } from '../queries/bookQuery'
+import { CREATE_BOOK, ALL_BOOKS } from '../queries/bookQuery'
 
 const NewBook = (props) => {
   const [title, setTitle] = useState('')
@@ -11,7 +11,10 @@ const NewBook = (props) => {
   const [genres, setGenres] = useState([])
 
   const [createBook] = useMutation(CREATE_BOOK, {
-    refetchQueries: [{ query: ALL_BOOKS_WITHOUT_GENRES }],
+    refetchQueries: genres.map((genre) => ({
+      query: ALL_BOOKS,
+      variables: { genres: genre },
+    })),
   })
 
   if (!props.show) {

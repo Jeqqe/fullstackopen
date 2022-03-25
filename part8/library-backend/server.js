@@ -60,8 +60,10 @@ const typeDefs = gql`
   type Query {
     bookCount: Int!
     authorCount: Int!
-    allBooks(author: String, genre: String): [Book!]!
+    allBooks(author: String, genres: [String!]): [Book!]!
+    recommendedBooks: [Book!]!
     allAuthors: [Author!]!
+    allGenres: [String!]!
     me: User
   }
 
@@ -92,6 +94,7 @@ const resolvers = {
     },
     allBooks: async (root, args) => {
       let resultBooks = await Book.find({}).populate('author')
+      resultBooks = resultBooks.filter((book) => book.author !== null)
 
       if (args.author) {
         resultBooks = resultBooks.filter(
@@ -99,15 +102,38 @@ const resolvers = {
         )
       }
 
-      if (args.genre) {
+      if (args.genres) {
         resultBooks = resultBooks.filter((book) =>
-          book.genres.includes(args.genre)
+          book.genres.some((genres) => genres.includes(args.genres))
         )
       }
 
       return resultBooks
     },
+    recommendedBooks: async (root, args, context) => {
+      const user = context.currentUser
+      const userGenres = user.favoriteGenre
+
+      let resultBooks = await Book.find({}).populate('author')
+      resultBooks = resultBooks.filter((book) => book.author !== null)
+
+      resultBooks = resultBooks.filter((book) =>
+        book.genres.some((genres) => genres.includes(userGenres))
+      )
+
+      return resultBooks
+    },
     allAuthors: async () => await Author.find({}),
+    allGenres: async () => {
+      let genres = []
+      const allBooks = await Book.find({})
+      allBooks.forEach((book) => {
+        book.genres.forEach((genre) => {
+          if (!genres.includes(genre)) genres.push(genre)
+        })
+      })
+      return genres
+    },
     me: (root, args, context) => context.currentUser,
   },
   Author: {
