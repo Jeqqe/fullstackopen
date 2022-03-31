@@ -19,3 +19,13 @@ This course serves as an introduction to modern web application development with
 - [ ] Part 10 - React Native (0/27)
 - [ ] Part 11 - CI/CD (0/22)
 - [ ] Part 12 - Containers (0/22)
+
+## Certificates
+
+### Parts 1-7
+
+![certificate image for parts 1-7](./certificates/certificate-fullstack.png)
+
+### Part 8
+
+![certificate image for part 8](./certificates/certificate-graphql.png)
