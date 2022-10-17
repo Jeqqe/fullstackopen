@@ -30,3 +30,7 @@ This course serves as an introduction to modern web application development with
 ### Part 8
 
 ![certificate image for part 8](./certificates/certificate-graphql.png)
+
+### Part 9
+
+![certificate image for part 9](./certificates/certificate-typescript.png)
