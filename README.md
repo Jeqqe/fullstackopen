@@ -6,20 +6,20 @@ This course serves as an introduction to modern web application development with
 
 ## Exercise progress
 
-- [x] [Part 0](./part0) - Fundamentals of Web apps (6/6)
-- [x] [Part 1](./part1) - Introduction to React (14/14)
-- [x] [Part 2](./part2) - Communicating with server (20/20)
-- [x] [Part 3](./part3) - Programming a server with NodeJS and Express (22/22)
-- [x] [Part 4](./part4) - Testing Express servers, user administration (23/23)
-- [x] [Part 5](./part5) - Testing React apps (22/22)
-- [x] [Part 6](./part6) - State management with Redux (21/21)
-- [x] [Part 7](./part7) - React router, custom hooks, styling app with CSS and webpack (21/21)
-- [x] [Part 8](./part8) - GraphQL (26/26)
-- [x] [Part 9](./part9) - TypeScript (24/27)
-- [ ] Part 10 - React Native (0/27)
-- [ ] Part 11 - CI/CD (0/22)
-- [ ] Part 12 - Containers (0/22)
-- [ ] Part 13 - Using relational databases (0/24)
+- [x] [Part 0](./part0) - Fundamentals of Web apps
+- [x] [Part 1](./part1) - Introduction to React
+- [x] [Part 2](./part2) - Communicating with server
+- [x] [Part 3](./part3) - Programming a server with NodeJS and Express
+- [x] [Part 4](./part4) - Testing Express servers, user administration
+- [x] [Part 5](./part5) - Testing React apps
+- [x] [Part 6](./part6) - State management with Redux
+- [x] [Part 7](./part7) - React router, custom hooks, styling app with CSS and webpack
+- [x] [Part 8](./part8) - GraphQL
+- [x] [Part 9](./part9) - TypeScript
+- [ ] Part 10 - React Native
+- [x] [Part 11](https://github.com/Jeqqe/full-stack-open-pokedex) - CI/CD
+- [ ] Part 12 - Containers
+- [ ] Part 13 - Using relational databases
 
 ## Certificates
 
@@ -34,3 +34,7 @@ This course serves as an introduction to modern web application development with
 ### Part 9
 
 ![certificate image for part 9](./certificates/certificate-typescript.png)
+
+### Part 11
+
+![certificate image for part 11](./certificates/certificate-cicd.png)
